@@ -2,8 +2,11 @@ package sg.edu.rp.c346.id22024713.demoweathernew;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lvWeather;
     AsyncHttpClient client;
+    Button btnReload;
 
 
     @Override
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         lvWeather = findViewById(R.id.listViewWeather);
         client = new AsyncHttpClient();
+        btnReload = findViewById(R.id.buttonReload);
     }
 
     @Override
@@ -59,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 lvWeather.setAdapter(weatherAdapter);
 
             }//end onSuccess
+        });
+
+        btnReload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }//end onResume
 }
